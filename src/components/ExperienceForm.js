@@ -106,10 +106,16 @@ class ExperienceForm extends Component {
           </div>
           <button>Submit</button>
         </form>
-        <div>
-          <p>Jobs:</p>
-          <ul>{jobsElements}</ul>
-        </div>
+        {(()=> {
+          if (this.state.jobs.length > 0) {
+            return (
+              <div>
+                <p>Jobs:</p>
+                <ul>{jobsElements}</ul>
+              </div>
+            );
+          }
+        })()}
       </div>
     );
   }
