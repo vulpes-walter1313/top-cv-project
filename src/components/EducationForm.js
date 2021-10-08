@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EduPinBlock from './EduPinBlock';
 
 class EducationForm extends Component {
   constructor(props) {
@@ -8,32 +9,46 @@ class EducationForm extends Component {
        school: '',
        study: '', 
        startYear: '',
-       endYear: ''
+       endYear: '',
     };
-    this.schoolSubmitHandler = this.schoolSubmitHandler.bind(this);
-    this.studySubmitHandler = this.studySubmitHandler.bind(this);
-    this.startYearSubmitHandler = this.startYearSubmitHandler.bind(this);
-    this.endYearSubmitHandler = this.endYearSubmitHandler.bind(this);
+    this.schoolOnChangeHandler = this.schoolOnChangeHandler.bind(this);
+    this.studyOnChangeHandler = this.studyOnChangeHandler.bind(this);
+    this.startYearOnChangeHandler = this.startYearOnChangeHandler.bind(this);
+    this.endYearOnChangeHandler = this.endYearOnChangeHandler.bind(this);
     this.submitFormHandler = this.submitFormHandler.bind(this);
   }
-  schoolSubmitHandler(e) {
+  schoolOnChangeHandler(e) {
     this.setState({school: e.target.value});
   }
-  studySubmitHandler(e) {
+  studyOnChangeHandler(e) {
     this.setState({study: e.target.value});
   }
-  startYearSubmitHandler(e) {
+  startYearOnChangeHandler(e) {
     this.setState({startYear: e.target.value});
   }
-  endYearSubmitHandler(e) {
+  endYearOnChangeHandler(e) {
     this.setState({endYear: e.target.value});
   }
   submitFormHandler(e) {
     e.preventDefault();
     this.props.submitFunc(this.state);
+    this.setState({
+        school: '',
+        study: '',
+        startYear: '',
+        endYear: ''
+      });
   }
   
   render() {
+    const education = this.props.schools.map(school => {
+      return (
+        <li key={school.id}>
+          <EduPinBlock schoolInfo={school} removeFunc={this.props.removeFunc}/>
+        </li>
+      );
+    });
+
     return (
       <div>
         <h2>Education Information</h2>
@@ -44,7 +59,7 @@ class EducationForm extends Component {
               id="school"
               name="school"
               value={this.state.school}
-              onChange={this.schoolSubmitHandler}/>
+              onChange={this.schoolOnChangeHandler}/>
           </div>
           <div className="study-input-group">
             <label htmlFor="study">Area of Study</label>
@@ -52,7 +67,7 @@ class EducationForm extends Component {
               id="study"
               name="study"
               value={this.state.study}
-              onChange={this.studySubmitHandler}/>
+              onChange={this.studyOnChangeHandler}/>
           </div>
           <div className="dateStudy-input-group">
             <label htmlFor="studystart">Start Year</label>
@@ -60,16 +75,28 @@ class EducationForm extends Component {
               id="studystart"
               name="studystart"
               value={this.state.startYear}
-              onChange={this.startYearSubmitHandler}/>
+              onChange={this.startYearOnChangeHandler}/>
             <label htmlFor="studyend">End Year</label>
             <input type="text"
               id="studyend"
               name="studyend"
               value={this.state.endYear}
-              onChange={this.endYearSubmitHandler}/>
+              onChange={this.endYearOnChangeHandler}/>
           </div>
           <button>Submit</button>
         </form>
+        {(()=> {
+          if (this.props.schools.length > 0) {
+            return (
+              <div>
+                <h3>Educational Info:</h3>
+                <ul>
+                  {education}
+                </ul>
+              </div>
+            );
+          }
+        })()}
       </div>
     );
   }
