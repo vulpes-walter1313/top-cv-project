@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function EduPinBlock(props) {
   const {schoolInfo} = props;
@@ -13,13 +13,14 @@ function EduPinBlock(props) {
   function removeSchool() {
     props.removeFunc(schoolInfo.id);
   }
-  
+
   return (
     <div>
-      <p>{schoolInfo.school} - {schoolInfo.study}</p>
+      <p>{schoolInfo.school}</p>
+      <p>From {schoolInfo.startYear} Til {schoolInfo.endYear}</p>
       <button type="button" onClick={removeSchool}>X</button>
     </div>
-  )
+  );
 }
 
-export default EduPinBlock
+export default EduPinBlock;
