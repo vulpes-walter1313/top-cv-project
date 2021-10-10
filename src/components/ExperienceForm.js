@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
+import WorkPinBlock from './WorkPinBlock';
 
 class ExperienceForm extends Component {
   constructor(props) {
     super(props);
   
     this.state = {
-       jobs: [],
        business: '',
        position: '',
        description: '',
-       startdate: '',
-       enddate: ''
+       startDate: '',
+       endDate: ''
     };
     this.businessChangeHandler = this.businessChangeHandler.bind(this);
     this.positionChangeHandler = this.positionChangeHandler.bind(this);
@@ -30,36 +30,32 @@ class ExperienceForm extends Component {
     this.setState({description: e.target.value});
   }
   workStartChangeHandler(e) {
-    this.setState({startdate: e.target.value});
+    this.setState({startDate: e.target.value});
   }
   workEndChangeHandler(e) {
-    this.setState({enddate: e.target.value});
+    this.setState({endDate: e.target.value});
   }
   submitFormHandler(e) {
     e.preventDefault();
-    this.setState(prevState => {
-      return {
-        jobs: [...prevState.jobs,
-          {
-            id: Date.now(),
-            business: prevState.business,
-            position: prevState.position,
-            description: prevState.description,
-            startdate: prevState.startdate,
-            enddate: prevState.enddate
-          }],
+    this.props.submitFunc(this.state);
+    this.setState({
         business: '',
         position: '',
         description: '',
-        startdate: '',
-        enddate: ''
-      }
-    }, () => console.log(this.state));
-    this.props.submitFunc(this.state);
+        startDate: '',
+        endDate: ''
+      });
   }
   
   render() {
-    const jobsElements = this.state.jobs.map( job => <li key={job.id}>{job.business}</li>);
+    const { jobs } = this.props
+    const jobsElements = jobs.map( job => {
+      return (
+      <li key={job.id}>
+        <WorkPinBlock workInfo={job} removeFunc={this.props.removeFunc}/>
+        </li>
+      );
+    });
     return (
       <div>
         <h2>Work Experience</h2>
@@ -93,7 +89,7 @@ class ExperienceForm extends Component {
             <input id="startdate"
               name="startdate"
               type="text"
-              value={this.state.startdate}
+              value={this.state.startDate}
               onChange={this.workStartChangeHandler}/>
           </div>
           <div className="experience-input-group">
@@ -101,13 +97,13 @@ class ExperienceForm extends Component {
             <input id="enddate"
               name="enddate"
               type="text"
-              value={this.state.enddate}
+              value={this.state.endDate}
               onChange={this.workEndChangeHandler}/>
           </div>
           <button>Submit</button>
         </form>
         {(()=> {
-          if (this.state.jobs.length > 0) {
+          if (jobs.length > 0) {
             return (
               <div>
                 <p>Jobs:</p>

@@ -20,13 +20,16 @@ class App extends React.Component {
     this.submitEduInfo = this.submitEduInfo.bind(this);
     this.submitWorkInfo = this.submitWorkInfo.bind(this);
     this.removeEducation = this.removeEducation.bind(this);
+    this.removeJob = this.removeJob.bind(this);
   }
 
   submitGenInfo(values) {
     const {name, email, phone } = values;
     this.setState({name: name, email: email, phone: phone});
   }
-
+  componentDidUpdate() {
+    console.log(this.state);
+  }
   submitEduInfo(value) {
     this.setState({ schools: [...this.state.schools, 
     {
@@ -41,7 +44,19 @@ class App extends React.Component {
       });
   }
   submitWorkInfo(values) {
-    this.setState({jobs: [...values.jobs]}, () => console.log(this.state));
+    this.setState(prevState => {
+      return {
+        jobs: [...prevState.jobs, 
+        {
+          id: Date.now(),
+          business: values.business,
+          position: values.position,
+          description: values.description,
+          startDate: values.startDate,
+          endDate: values.endDate
+        }]
+      }
+    });
   }
   removeEducation(idToRemove) {
     this.setState(prevState => {
@@ -49,7 +64,15 @@ class App extends React.Component {
       return {
         schools: newSchoolsArr
       };
-    })
+    });
+  }
+  removeJob(idToRemove) {
+    this.setState(prevState => {
+      const newJobsArr = prevState.jobs.filter(job => job.id != idToRemove)
+      return {
+        jobs: newJobsArr
+      };
+    });
   }
 
   render() {
@@ -58,7 +81,7 @@ class App extends React.Component {
         <Header />
         <GeneralInfo subFunc={this.submitGenInfo}/>
         <EducationForm submitFunc={this.submitEduInfo} schools={this.state.schools} removeFunc={this.removeEducation}/>
-        <ExperienceForm submitFunc={this.submitWorkInfo}/>
+        <ExperienceForm submitFunc={this.submitWorkInfo} jobs={this.state.jobs} removeFunc={this.removeJob}/>
       </div>
     );
   }
