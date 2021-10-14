@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import StoreLocal from '../logic/StoreLocal';
 
 class GeneralInfo extends Component {
   constructor(props) {
@@ -14,7 +15,16 @@ class GeneralInfo extends Component {
     this.changePhoneHandler = this.changePhoneHandler.bind(this);
     this.formSubmit = this.formSubmit.bind(this)
   }
-
+  componentDidMount() {
+    const data = StoreLocal.loadState();
+    if (data !== null) {
+      this.setState({
+        name: data.name,
+        email: data.email,
+        phone: data.phone
+      });
+    }
+  }
   changeNameHandler(e) {
     this.setState({ name: e.target.value});
   }
@@ -31,8 +41,9 @@ class GeneralInfo extends Component {
   
   render() {
     return (
-      <div>
-        <h2>Basic Information</h2>
+      <div className="section-component">
+        <h2 className="section-title">Basic Information</h2>
+        <hr/>
         <form className="general-info-form" onSubmit={this.formSubmit}>
           <div className="name-input-group">
             <label htmlFor="name">Name</label>
@@ -58,7 +69,7 @@ class GeneralInfo extends Component {
               name="phone"
               value={this.state.phone}/>
           </div>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     );

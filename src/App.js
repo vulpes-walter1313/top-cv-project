@@ -4,6 +4,8 @@ import EducationForm from './components/EducationForm';
 import ExperienceForm from './components/ExperienceForm';
 import GeneralInfo from './components/GeneralInfo';
 import Header from './components/Header';
+import OutputDisplay from './components/OutputDisplay';
+import StoreLocal from './logic/StoreLocal';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,7 +30,20 @@ class App extends React.Component {
     this.setState({name: name, email: email, phone: phone});
   }
   componentDidUpdate() {
-    console.log(this.state);
+    StoreLocal.saveState(this.state);
+  }
+  componentDidMount() {
+    const data = StoreLocal.loadState();
+    console.log(data);
+    if (data !== null) {
+      this.setState({
+        name: data.name,
+        phone: data.phone,
+        email: data.email,
+        jobs: [...data.jobs],
+        schools: [...data.schools]
+      });
+    }
   }
   submitEduInfo(value) {
     this.setState({ schools: [...this.state.schools, 
@@ -82,6 +97,13 @@ class App extends React.Component {
         <GeneralInfo subFunc={this.submitGenInfo}/>
         <EducationForm submitFunc={this.submitEduInfo} schools={this.state.schools} removeFunc={this.removeEducation}/>
         <ExperienceForm submitFunc={this.submitWorkInfo} jobs={this.state.jobs} removeFunc={this.removeJob}/>
+        <OutputDisplay
+          personName={this.state.name}
+          email={this.state.email}
+          phone={this.state.phone}
+          schools={this.state.schools}
+          jobs={this.state.jobs}
+          />
       </div>
     );
   }
