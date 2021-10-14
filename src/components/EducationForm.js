@@ -50,8 +50,9 @@ class EducationForm extends Component {
     });
 
     return (
-      <div>
-        <h2>Education Information</h2>
+      <div className="section-component">
+        <h2 className="section-title">Education Information</h2>
+        <hr/>
         <form className="education-info-form" onSubmit={this.submitFormHandler}>
           <div className="school-input-group">
             <label htmlFor="school">School Name</label>
@@ -83,12 +84,12 @@ class EducationForm extends Component {
               value={this.state.endYear}
               onChange={this.endYearOnChangeHandler}/>
           </div>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
         {(()=> {
           if (this.props.schools.length > 0) {
             return (
-              <div>
+              <div className="submitted-pin-blocks">
                 <h3>Educational Info:</h3>
                 <ul>
                   {education}

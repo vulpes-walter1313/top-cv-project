@@ -57,8 +57,9 @@ class ExperienceForm extends Component {
       );
     });
     return (
-      <div>
-        <h2>Work Experience</h2>
+      <div className="section-component">
+        <h2 className="section-title">Work Experience</h2>
+        <hr/>
         <form className="experience-info-form" onSubmit={this.submitFormHandler}>
           <div className="experience-input-group">
             <label htmlFor="business">Business Name</label>
@@ -100,13 +101,13 @@ class ExperienceForm extends Component {
               value={this.state.endDate}
               onChange={this.workEndChangeHandler}/>
           </div>
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
         {(()=> {
           if (jobs.length > 0) {
             return (
-              <div>
-                <p>Jobs:</p>
+              <div className="submitted-pin-blocks">
+                <h3>Work Experience:</h3>
                 <ul>{jobsElements}</ul>
               </div>
             );

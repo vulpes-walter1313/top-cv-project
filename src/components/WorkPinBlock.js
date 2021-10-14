@@ -15,11 +15,12 @@ function WorkPinBlock(props) {
  }
 
   return (
-    <div>
-      <p>{workInfo.business}</p>
+    <div className="pin-block">
+      <p className="pin-block-title">{workInfo.business}</p>
+      <hr/>
       <p>{workInfo.position}</p>
-      <p>Start: {workInfo.startDate} End: {workInfo.endDate}</p>
-      <button type="button" onClick={removeJob}>X</button>
+      <p>Start: {workInfo.startDate}<br/>End: {workInfo.endDate}</p>
+      <button type="button" onClick={removeJob}>Remove</button>
     </div>
   );
 }

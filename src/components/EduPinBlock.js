@@ -15,10 +15,12 @@ function EduPinBlock(props) {
   }
 
   return (
-    <div>
-      <p>{schoolInfo.school}</p>
-      <p>From {schoolInfo.startYear} Til {schoolInfo.endYear}</p>
-      <button type="button" onClick={removeSchool}>X</button>
+    <div className="pin-block">
+      <p className="pin-block-title">{schoolInfo.school}</p>
+      <hr/>
+      <p>{schoolInfo.study}</p>
+      <p>{schoolInfo.startYear} - {schoolInfo.endYear}</p>
+      <button type="button" onClick={removeSchool}>Remove</button>
     </div>
   );
 }
