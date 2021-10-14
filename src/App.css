@@ -1,0 +1,137 @@
+:root {
+  --cl1: #22223B;
+  --cl2: #4A4E69;
+  --cl3: #9A8C98;
+  --cl4: #C9ADA7;
+  --cl5: #F2E9E4;
+
+}
+
+body {
+  background-color: var(--cl1);
+}
+.section-component {
+  background-color: var(--cl2);
+  color: var(--cl5);
+  width: min(80vw, 36em);
+  border-radius: 5px;
+  border: 2px solid var(--cl5);
+  margin: 1em auto 0;
+  padding: .5em 1em;
+}
+
+.section-title {
+  color: var(--cl5);
+  font-size: 2rem;
+  margin: 1rem 0 0;
+}
+header h1 {
+  font-size: 3rem;
+  margin: .5em 0 .25em;
+}
+hr {
+  border: 2px solid var(--cl3);
+  border-radius: 3px;
+  margin: .5rem 0 1rem;
+}
+.txt-bold {
+  font-weight: 600;
+}
+
+/* Forms */
+form {
+  display: flex;
+  flex-flow: column;
+}
+form > div {
+  margin: .5rem 0;
+  display: flex;
+  flex-flow: column;
+}
+label {
+  font-weight: 600;
+  margin: 0 0 .5rem;
+}
+input[type="text"] {
+  border-radius: 3px;
+  border-style: none;
+  padding: .25rem .5rem;
+  font-size: 1rem;
+}
+button[type="submit"] {
+  border-style: none;
+  background: var(--cl1);
+  border: 2px solid var(--cl5);
+  padding: 1rem;
+  border-radius: 13px;
+  cursor: pointer;
+  color: var(--cl5);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Pin blocks */
+
+.submitted-pin-blocks {
+  margin: .5rem 0 0;
+}
+
+ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  flex-flow: row wrap;
+  flex: 1 0 250px;
+}
+ul li {
+  margin: 1rem;
+}
+
+.pin-block {
+  background-color: var(--cl1);
+  padding: 1rem;
+  display: flex;
+  flex-flow: column;
+}
+.pin-block hr {
+  border: 1px solid var(--cl3);
+  border-radius: 3px;
+  margin: .25rem 0 .5rem;
+}
+.pin-block-title {
+  font-weight: 600;
+}
+.pin-block button[type="button"] {
+  border-style: none;
+  background: var(--cl1);
+  border: 2px solid var(--cl5);
+  padding: .5rem;
+  border-radius: 7px;
+  cursor: pointer;
+  color: var(--cl5);
+  font-size: .8rem;
+  font-weight: 600;
+  margin: .5rem 0 0;
+}
+
+/* Results section */
+.results {
+  background: whitesmoke;
+  color: var(--cl1);
+  border-radius: 15px;
+  padding: 1em;
+}
+.results-title {
+  font-size: 2rem;
+  margin: .75rem 0 0;
+}
+.results-school-group {
+  border-left: 2px solid var(--cl2);
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+.results-job-group {
+  border-left: 2px solid var(--cl2);
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
