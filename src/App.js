@@ -15,6 +15,7 @@ class App extends React.Component {
        name: '',
        email: '',
        phone: '',
+       gender: 'Other',
        schools: [],
        jobs: []
     }
@@ -26,8 +27,8 @@ class App extends React.Component {
   }
 
   submitGenInfo(values) {
-    const {name, email, phone } = values;
-    this.setState({name: name, email: email, phone: phone});
+    const {name, email, phone, gender } = values;
+    this.setState({name: name, email: email, phone: phone, gender: gender});
   }
   componentDidUpdate() {
     StoreLocal.saveState(this.state);
@@ -101,6 +102,7 @@ class App extends React.Component {
           personName={this.state.name}
           email={this.state.email}
           phone={this.state.phone}
+          gender={this.state.gender}
           schools={this.state.schools}
           jobs={this.state.jobs}
           />

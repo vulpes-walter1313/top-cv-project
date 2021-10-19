@@ -5,6 +5,7 @@ function OutputDisplay(props) {
     personName: name,
     email,
     phone,
+    gender,
     schools,
     jobs
   } = props;
@@ -57,7 +58,7 @@ function OutputDisplay(props) {
         <h3 className="results-title">Personal Information</h3>
         <hr/>
         <p><span className="txt-bold">Full Name:</span> {name}</p>
-        <p><span className="txt-bold">Gender:</span> TBA</p>
+        <p><span className="txt-bold">Gender:</span> {gender}</p>
         <p><span className="txt-bold">Date of Birth:</span> TBA</p>
         <p><span className="txt-bold">Phone Number:</span> {phone}</p>
         <p><span className="txt-bold">Email:</span> {email}</p>
