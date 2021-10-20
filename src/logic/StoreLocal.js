@@ -3,6 +3,8 @@ class StoreLocal {
     const formattedState = {
       name: state.name,
       email: state.email,
+      gender: state.gender,
+      dob: state.dob,
       phone: state.phone,
       schools: state.schools,
       jobs: state.jobs

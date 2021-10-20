@@ -16,6 +16,7 @@ class GeneralInfo extends Component {
     this.changeEmailHandler = this.changeEmailHandler.bind(this);
     this.changePhoneHandler = this.changePhoneHandler.bind(this);
     this.changeGenderHandler = this.changeGenderHandler.bind(this);
+    this.changeDobHandler = this.changeDobHandler.bind(this);
     this.formSubmit = this.formSubmit.bind(this)
   }
   componentDidMount() {
@@ -39,6 +40,9 @@ class GeneralInfo extends Component {
   }
   changeGenderHandler(e) {
     this.setState({gender: e.target.value});
+  }
+  changeDobHandler(e) {
+    this.setState({dob: e.target.value});
   }
   formSubmit(e) {
     e.preventDefault();
@@ -86,6 +90,14 @@ class GeneralInfo extends Component {
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
             </select>
+          </div>
+          <div className="dob-input-group">
+            <label htmlFor="dob">Date of Birth</label>
+            <input type="text"
+              onChange={this.changeDobHandler}
+              id="dob"
+              name="dob"
+              value={this.state.dob}/>
           </div>
           <button type="submit">Submit</button>
         </form>
