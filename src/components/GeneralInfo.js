@@ -25,7 +25,9 @@ class GeneralInfo extends Component {
       this.setState({
         name: data.name,
         email: data.email,
-        phone: data.phone
+        phone: data.phone,
+        dob: data.dob,
+        gender: data.gender
       });
     }
   }
