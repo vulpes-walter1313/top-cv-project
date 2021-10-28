@@ -13,6 +13,10 @@ function EduPinBlock(props) {
   function removeSchool() {
     props.removeFunc(schoolInfo.id);
   }
+  function editSchool() {
+    props.editFunc(schoolInfo.school, schoolInfo.study, schoolInfo.startYear, schoolInfo.endYear)
+    removeSchool();
+  }
 
   return (
     <div className="pin-block">
@@ -21,6 +25,7 @@ function EduPinBlock(props) {
       <p>{schoolInfo.study}</p>
       <p>{schoolInfo.startYear} - {schoolInfo.endYear}</p>
       <button type="button" onClick={removeSchool}>Remove</button>
+      <button type="button" onClick={editSchool}>Edit</button>
     </div>
   );
 }

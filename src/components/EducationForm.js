@@ -15,6 +15,7 @@ class EducationForm extends Component {
     this.studyOnChangeHandler = this.studyOnChangeHandler.bind(this);
     this.startYearOnChangeHandler = this.startYearOnChangeHandler.bind(this);
     this.endYearOnChangeHandler = this.endYearOnChangeHandler.bind(this);
+    this.editSchoolInfo = this.editSchoolInfo.bind(this);
     this.submitFormHandler = this.submitFormHandler.bind(this);
   }
   schoolOnChangeHandler(e) {
@@ -28,6 +29,14 @@ class EducationForm extends Component {
   }
   endYearOnChangeHandler(e) {
     this.setState({endYear: e.target.value});
+  }
+  editSchoolInfo(school, study, startYear, endYear) {
+    this.setState({
+      school,
+      study,
+      startYear,
+      endYear
+    });
   }
   submitFormHandler(e) {
     e.preventDefault();
@@ -44,7 +53,9 @@ class EducationForm extends Component {
     const education = this.props.schools.map(school => {
       return (
         <li key={school.id}>
-          <EduPinBlock schoolInfo={school} removeFunc={this.props.removeFunc}/>
+          <EduPinBlock schoolInfo={school}
+            removeFunc={this.props.removeFunc}
+            editFunc={this.editSchoolInfo}/>
         </li>
       );
     });
