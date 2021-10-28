@@ -18,6 +18,7 @@ class ExperienceForm extends Component {
     this.workStartChangeHandler = this.workStartChangeHandler.bind(this);
     this.workEndChangeHandler = this.workEndChangeHandler.bind(this);
     this.submitFormHandler = this.submitFormHandler.bind(this);
+    this.editJobHandler = this.editJobHandler.bind(this);
   }
 
   businessChangeHandler(e) {
@@ -46,13 +47,22 @@ class ExperienceForm extends Component {
         endDate: ''
       });
   }
+  editJobHandler(business, position, description, startDate, endDate) {
+    this.setState({
+      business,
+      position,
+      description,
+      startDate,
+      endDate
+    });
+  }
   
   render() {
     const { jobs } = this.props
     const jobsElements = jobs.map( job => {
       return (
       <li key={job.id}>
-        <WorkPinBlock workInfo={job} removeFunc={this.props.removeFunc}/>
+        <WorkPinBlock workInfo={job} removeFunc={this.props.removeFunc} editFunc={this.editJobHandler}/>
         </li>
       );
     });

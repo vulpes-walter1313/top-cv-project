@@ -13,6 +13,16 @@ function WorkPinBlock(props) {
  function removeJob() {
    props.removeFunc(workInfo.id);
  }
+ function editJob() {
+   props.editFunc(
+      workInfo.business,
+      workInfo.position,
+      workInfo.description,
+      workInfo.startDate,
+      workInfo.endDate
+    );
+    props.removeFunc(workInfo.id);
+ }
 
   return (
     <div className="pin-block">
@@ -21,6 +31,7 @@ function WorkPinBlock(props) {
       <p>{workInfo.position}</p>
       <p>Start: {workInfo.startDate}<br/>End: {workInfo.endDate}</p>
       <button type="button" onClick={removeJob}>Remove</button>
+      <button type="button" onClick={editJob}>Edit</button>
     </div>
   );
 }
