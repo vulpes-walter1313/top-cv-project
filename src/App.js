@@ -126,6 +126,18 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case 'LOAD_FROM_STORE':
+      const data = action.payload;
+      return {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        gender: data.gender,
+        dob: data.dob,
+        schools: [...data.schools],
+        jobs: [...data.jobs]
+      };
+      break;
     case 'GENINFO_SUBMIT':
       return {
         ...state,
@@ -176,6 +188,24 @@ function reducer(state, action) {
 }
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Initial load from localStorage
+  useEffect(() => {
+    const data = StoreLocal.loadState();
+    console.log(data);
+    if (data !== null) {
+      dispatch({
+        type: 'LOAD_FROM_STORE',
+        payload: data
+      })
+    }
+  }, []);
+
+  // Save to localStorage after changes
+  useEffect(() => {
+    console.log('save to LocalStorage Called');
+    StoreLocal.saveState(state);
+  }, [state]);
 
   return (
     <div className="App">
