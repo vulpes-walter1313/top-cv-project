@@ -11,7 +11,12 @@ function EduPinBlock(props) {
   .id */
 
   function removeSchool() {
-    props.removeFunc(schoolInfo.id);
+    props.removeFunc({
+      type: 'REMOVE_EDU',
+      payload: {
+        id: schoolInfo.id
+      }
+    });
   }
   function editSchool() {
     props.editFunc(schoolInfo.school, schoolInfo.study, schoolInfo.startYear, schoolInfo.endYear)
