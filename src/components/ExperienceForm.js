@@ -25,7 +25,7 @@ function ExperienceForm(props) {
   }
   function submitFormHandler(e) {
     e.preventDefault();
-    props.submitFunc({
+    props.rootDispatchFunc({
       type: 'EXPINFO_SUBMIT',
       payload: {
         id: Date.now(), 
@@ -50,11 +50,12 @@ function ExperienceForm(props) {
     setEndDate(endDate);
   }
 
-  const { jobs } = props;
-  const jobsElements = jobs.map(job => {
+  const jobsElements = props.jobs.map(job => {
     return (
       <li key={job.id}>
-        <WorkPinBlock workInfo={job} removeFunc={props.removeFunc} editFunc={editJobHandler} />
+        <WorkPinBlock workInfo={job}
+          removeFunc={props.rootDispatchFunc}
+          editFunc={editJobHandler} />
       </li>
     );
   });
@@ -107,7 +108,7 @@ function ExperienceForm(props) {
         <button type="submit">Submit</button>
       </form>
       {(() => {
-        if (jobs.length > 0) {
+        if (props.jobs.length > 0) {
           return (
             <div className="submitted-pin-blocks">
               <h3>Work Experience:</h3>

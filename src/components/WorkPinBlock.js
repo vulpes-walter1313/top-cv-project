@@ -9,9 +9,15 @@ function WorkPinBlock(props) {
     .description
     .startDate
     .endDate
+    .id
   */
  function removeJob() {
-   props.removeFunc(workInfo.id);
+   props.removeFunc({
+     type: 'REMOVE_WORK',
+     payload: {
+       id: workInfo.id
+     }
+   });
  }
  function editJob() {
    props.editFunc(
@@ -21,7 +27,7 @@ function WorkPinBlock(props) {
       workInfo.startDate,
       workInfo.endDate
     );
-    props.removeFunc(workInfo.id);
+    removeJob();
  }
 
   return (

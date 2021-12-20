@@ -145,7 +145,7 @@ function reducer(state, action) {
         ]
       };
       break;
-    case 'EXPINFO_SUMBIT':
+    case 'EXPINFO_SUBMIT':
       return {
         ...state,
         jobs: [
@@ -162,6 +162,14 @@ function reducer(state, action) {
         schools: newSchools
       };
       break;
+    case 'REMOVE_WORK':
+      const jobIdToRemove = action.payload.id;
+      const newJobs = state.jobs.filter(job => job.id !== jobIdToRemove);
+      return {
+        ...state,
+        jobs: newJobs
+      };
+      break;
     default:
       return state;
   }
@@ -174,7 +182,7 @@ function App() {
       <Header />
       <GeneralInfo submitFunc={dispatch} />
       <EducationForm rootDispatchFunc={dispatch} schools={state.schools} />
-      <ExperienceForm submitFunc={dispatch} jobs={state.jobs} /* removeFunc={this.removeJob} */ />
+      <ExperienceForm rootDispatchFunc={dispatch} jobs={state.jobs} />
       <OutputDisplay
         personName={state.name}
         email={state.email}
