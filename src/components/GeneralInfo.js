@@ -25,7 +25,17 @@ function GeneralInfo(props) {
   }
   function formSubmit(e) {
     e.preventDefault();
-    props.subFunc({ name, email, phone, gender, dob });
+    // props.submitFunc({ name, email, phone, gender, dob });
+    props.submitFunc({
+      type: 'GENINFO_SUBMIT',
+      payload: {
+        name,
+        email,
+        phone,
+        gender,
+        dob
+      }
+    });
   }
 
   // initial mount for data
