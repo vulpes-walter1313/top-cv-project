@@ -25,7 +25,17 @@ function ExperienceForm(props) {
   }
   function submitFormHandler(e) {
     e.preventDefault();
-    props.submitFunc({ business, position, description, startDate, endDate });
+    props.submitFunc({
+      type: 'EXPINFO_SUBMIT',
+      payload: {
+        id: Date.now(), 
+        business,
+        position,
+        description,
+        startDate,
+        endDate
+      }
+    });
     setBusiness('');
     setPosition('');
     setDescription('');

@@ -21,7 +21,16 @@ function EducationForm(props) {
   }
   function submitFormHandler(e) {
     e.preventDefault();
-    props.submitFunc({ school, study, startYear, endYear });
+    props.rootDispatchFunc({
+      type: 'EDUINFO_SUBMIT',
+      payload: { 
+        school,
+        study,
+        startYear,
+        endYear,
+        id: Date.now()
+      }
+    });
     setSchool('');
     setStudy('');
     setStartYear('');
@@ -39,7 +48,7 @@ function EducationForm(props) {
     return (
       <li key={school.id}>
         <EduPinBlock schoolInfo={school}
-          removeFunc={props.removeFunc}
+          removeFunc={props.rootDispatchFunc}
           editFunc={editSchoolInfo} />
       </li>
     );
